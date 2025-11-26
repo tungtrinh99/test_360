@@ -197,28 +197,8 @@ export function AppLayout({ children }: AppLayoutProps) {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex flex-1 flex-col bg-zinc-100">
-          <div className="flex-1">
-            <div className="border-b-2 border-gray-200 bg-sidebar p-4 md:p-6">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex-1 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <h1 className="text-xl font-semibold text-card-foreground">
-                      タイトルが入ります
-                    </h1>
-                    <Info className="h-6 w-6 text-foreground" />
-                  </div>
-                  <p className="text-sm text-card-foreground">
-                    ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。
-                  </p>
-                </div>
-                <Button size="lg" className="px-8">
-                  アクション
-                </Button>
-              </div>
-            </div>
-            <div className="p-8 bg-background">{children}</div>
-          </div>
+        <div className="flex flex-1 flex-col bg-background">
+          {children}
         </div>
       </SidebarInset>
     </SidebarProvider>
