@@ -41,7 +41,7 @@ const mockEmployees: Employee[] = Array.from({ length: 20 }, (_, i) => ({
 
 export default function DataFetching() {
   const [selectedEmployees, setSelectedEmployees] = useState<Set<string>>(
-    new Set(["emp-1", "emp-2", "emp-3"])
+    new Set(["emp-1", "emp-2", "emp-3"]),
   );
   const [department, setDepartment] = useState("エンタメ事業部");
   const [memberName, setMemberName] = useState("");
@@ -130,7 +130,9 @@ export default function DataFetching() {
             </TabsList>
 
             <div className="flex flex-col gap-4 md:flex-row md:items-center">
-              <div className="text-lg font-bold">{selectedEmployees.size}名選択</div>
+              <div className="text-lg font-bold">
+                {selectedEmployees.size}名選択
+              </div>
               <div className="flex gap-2">
                 <Button variant="outline" className="whitespace-nowrap">
                   前回のデータを反映
@@ -147,7 +149,9 @@ export default function DataFetching() {
                   <TableRow>
                     <TableHead className="w-[50px]">
                       <Checkbox
-                        checked={selectedEmployees.size === mockEmployees.length}
+                        checked={
+                          selectedEmployees.size === mockEmployees.length
+                        }
                         onCheckedChange={toggleAll}
                       />
                     </TableHead>
@@ -242,7 +246,10 @@ export default function DataFetching() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                    <TableCell
+                      colSpan={5}
+                      className="text-center text-muted-foreground py-8"
+                    >
                       対象外のメンバーはいません
                     </TableCell>
                   </TableRow>

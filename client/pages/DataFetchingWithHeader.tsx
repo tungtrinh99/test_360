@@ -86,7 +86,7 @@ const mockEmployees: Employee[] = Array.from({ length: 20 }, (_, i) => ({
 export default function DataFetchingWithHeader() {
   const [playgroundOpen, setPlaygroundOpen] = useState(true);
   const [selectedEmployees, setSelectedEmployees] = useState<Set<string>>(
-    new Set(["emp-1", "emp-2", "emp-3"])
+    new Set(["emp-1", "emp-2", "emp-3"]),
   );
   const [department, setDepartment] = useState("エンタメ事業部");
   const [memberName, setMemberName] = useState("");
@@ -414,7 +414,9 @@ export default function DataFetchingWithHeader() {
                             <TableCell>
                               <Checkbox
                                 checked={selectedEmployees.has(employee.id)}
-                                onCheckedChange={() => toggleEmployee(employee.id)}
+                                onCheckedChange={() =>
+                                  toggleEmployee(employee.id)
+                                }
                               />
                             </TableCell>
                             <TableCell>
@@ -424,7 +426,9 @@ export default function DataFetchingWithHeader() {
                                     {getInitials(employee.name)}
                                   </AvatarFallback>
                                 </Avatar>
-                                <span className="font-medium">{employee.name}</span>
+                                <span className="font-medium">
+                                  {employee.name}
+                                </span>
                               </div>
                             </TableCell>
                             <TableCell>{employee.employmentType}</TableCell>
