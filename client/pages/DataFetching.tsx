@@ -112,8 +112,8 @@ export default function DataFetching() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full md:w-auto">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <TabsList className="grid w-full md:w-[400px] grid-cols-2">
               <TabsTrigger
                 value="target"
@@ -128,129 +128,129 @@ export default function DataFetching() {
                 対象外(10名）
               </TabsTrigger>
             </TabsList>
-          </Tabs>
 
-          <div className="flex flex-col gap-4 md:flex-row md:items-center">
-            <div className="text-lg font-bold">{selectedEmployees.size}名選択</div>
-            <div className="flex gap-2">
-              <Button variant="outline" className="whitespace-nowrap">
-                前回のデータを反映
-              </Button>
-              <Button className="whitespace-nowrap">評価対象外にする</Button>
+            <div className="flex flex-col gap-4 md:flex-row md:items-center">
+              <div className="text-lg font-bold">{selectedEmployees.size}名選択</div>
+              <div className="flex gap-2">
+                <Button variant="outline" className="whitespace-nowrap">
+                  前回のデータを反映
+                </Button>
+                <Button className="whitespace-nowrap">評価対象外にする</Button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <TabsContent value="target" className="mt-0">
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[50px]">
-                    <Checkbox
-                      checked={selectedEmployees.size === mockEmployees.length}
-                      onCheckedChange={toggleAll}
-                    />
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      評価対象者
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      雇用形態
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      部署
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      入社日
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {mockEmployees.map((employee) => (
-                  <TableRow key={employee.id}>
-                    <TableCell>
+          <TabsContent value="target" className="mt-0">
+            <div className="rounded-md border">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[50px]">
                       <Checkbox
-                        checked={selectedEmployees.has(employee.id)}
-                        onCheckedChange={() => toggleEmployee(employee.id)}
+                        checked={selectedEmployees.size === mockEmployees.length}
+                        onCheckedChange={toggleAll}
                       />
-                    </TableCell>
-                    <TableCell>
+                    </TableHead>
+                    <TableHead>
                       <div className="flex items-center gap-2">
-                        <Avatar className="h-6 w-6">
-                          <AvatarFallback className="text-xs">
-                            {getInitials(employee.name)}
-                          </AvatarFallback>
-                        </Avatar>
-                        <span className="font-medium">{employee.name}</span>
+                        評価対象者
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
                       </div>
-                    </TableCell>
-                    <TableCell>{employee.employmentType}</TableCell>
-                    <TableCell>{employee.department}</TableCell>
-                    <TableCell>{employee.joinDate}</TableCell>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        雇用形態
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        部署
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        入社日
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </TabsContent>
+                </TableHeader>
+                <TableBody>
+                  {mockEmployees.map((employee) => (
+                    <TableRow key={employee.id}>
+                      <TableCell>
+                        <Checkbox
+                          checked={selectedEmployees.has(employee.id)}
+                          onCheckedChange={() => toggleEmployee(employee.id)}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-2">
+                          <Avatar className="h-6 w-6">
+                            <AvatarFallback className="text-xs">
+                              {getInitials(employee.name)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <span className="font-medium">{employee.name}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell>{employee.employmentType}</TableCell>
+                      <TableCell>{employee.department}</TableCell>
+                      <TableCell>{employee.joinDate}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </TabsContent>
 
-        <TabsContent value="excluded" className="mt-0">
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[50px]">
-                    <Checkbox />
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      評価対象者
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      雇用形態
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      部署
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                  <TableHead>
-                    <div className="flex items-center gap-2">
-                      入社日
-                      <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
-                    対象外のメンバーはいません
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-        </TabsContent>
+          <TabsContent value="excluded" className="mt-0">
+            <div className="rounded-md border">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[50px]">
+                      <Checkbox />
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        評価対象者
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        雇用形態
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        部署
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex items-center gap-2">
+                        入社日
+                        <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                      対象外のメンバーはいません
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </AppLayout>
   );
